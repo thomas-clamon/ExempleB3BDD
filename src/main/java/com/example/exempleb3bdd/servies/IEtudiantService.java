@@ -37,4 +37,6 @@ public interface IEtudiantService {
      * @return
      */
     Boolean Exist(Integer id);
+
+    Boolean Delete (Integer id);
 }

@@ -33,4 +33,14 @@ public class EtudiantController {
 
         return new ResponseEntity  (service.get(id), HttpStatusCode.valueOf(200));
     }
+    @GetMapping("delete/{id}")
+    public ResponseEntity supprimer(@PathVariable Integer id){
+        // on verifie si l'ID existe
+        if (!service.Exist(id))
+            return new ResponseEntity("L'id n'existe pas", HttpStatusCode.valueOf(201) );
+        service.Delete(id);
+        return new ResponseEntity("Etudiant supprimée", HttpStatusCode.valueOf(200));
+
+
+    }
 }

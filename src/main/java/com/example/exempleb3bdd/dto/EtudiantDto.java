@@ -5,6 +5,16 @@ public class EtudiantDto {
     private String display_name;
     private Integer age;
 
+    private Float moyenne;
+
+    public Float getMoyenne() {
+        return moyenne;
+    }
+
+    public void setMoyenne(Float moyenne) {
+        this.moyenne = moyenne;
+    }
+
     public String getDisplay_name() {
         return display_name;
     }

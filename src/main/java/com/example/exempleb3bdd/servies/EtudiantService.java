@@ -3,6 +3,7 @@ package com.example.exempleb3bdd.servies;
 import com.example.exempleb3bdd.dto.EtudiantAddDto;
 import com.example.exempleb3bdd.dto.EtudiantDto;
 import com.example.exempleb3bdd.entites.EtudiantEntity;
+import com.example.exempleb3bdd.entites.EvaluationEntiy;
 import com.example.exempleb3bdd.repositories.EtudiantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,15 @@ public class EtudiantService implements IEtudiantService{
         Integer age = Period.between(entity.getBirth_date(), LocalDate.now()).getYears();
         dto.setAge(age);
 
+        // on calcule la moyenne
+        List<EvaluationEntiy>  liste_note = entity.getEvaluations();
+
+        float sum = 0;
+        for(int i =0; i<liste_note.size(); i++)
+        {
+            sum = sum + liste_note.get(i).getNote();
+        }
+        dto.setMoyenne(sum/liste_note.size());
         return dto;
     }
 
@@ -62,5 +72,11 @@ public class EtudiantService implements IEtudiantService{
     @Override
     public Boolean Exist(Integer id) {
         return repository.existsById(id);
+    }
+
+    @Override
+    public Boolean Delete(Integer id) {
+        repository.deleteById(id);
+        return true;
     }
 }

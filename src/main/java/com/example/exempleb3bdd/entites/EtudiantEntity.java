@@ -3,6 +3,7 @@ package com.example.exempleb3bdd.entites;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Etudiants")
@@ -21,6 +22,18 @@ public class EtudiantEntity {
 
     @Column (name = "date_naissance")
     private LocalDate birth_date;
+
+    @JoinColumn(name = "id_etudiant")
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<EvaluationEntiy> evaluations;
+
+    public List<EvaluationEntiy> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<EvaluationEntiy> evaluations) {
+        this.evaluations = evaluations;
+    }
 
     public Integer getID() {
         return ID;
