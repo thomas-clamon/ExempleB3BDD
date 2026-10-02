@@ -1,5 +1,6 @@
 package com.example.exempleb3bdd.servies;
 
+import com.example.exempleb3bdd.dto.EtudiantAddDto;
 import com.example.exempleb3bdd.dto.EtudiantDto;
 import com.example.exempleb3bdd.entites.EtudiantEntity;
 
@@ -20,4 +21,20 @@ public interface IEtudiantService {
      * @return
      */
     public List<EtudiantDto> getAll();
+
+    /**
+     * Enregister un nouvelle etudiant er renvoyer son ID
+     * @param dto
+     * @return
+     */
+    public Integer ajouter(EtudiantAddDto dto);
+
+    public EtudiantDto get (Integer id);
+
+    /**
+     * Renvoi vrai si l'ID existe dans la table etudiant faux sinon
+     * @param id
+     * @return
+     */
+    Boolean Exist(Integer id);
 }

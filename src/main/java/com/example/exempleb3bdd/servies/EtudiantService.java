@@ -1,5 +1,6 @@
 package com.example.exempleb3bdd.servies;
 
+import com.example.exempleb3bdd.dto.EtudiantAddDto;
 import com.example.exempleb3bdd.dto.EtudiantDto;
 import com.example.exempleb3bdd.entites.EtudiantEntity;
 import com.example.exempleb3bdd.repositories.EtudiantRepository;
@@ -38,5 +39,28 @@ public class EtudiantService implements IEtudiantService{
         }
         return result;
 
+    }
+
+    @Override
+    public Integer ajouter(EtudiantAddDto dto) {
+
+        // on covertie le dto en entity
+        EtudiantEntity entity = new EtudiantEntity();
+        entity.setFirst_name(dto.getPrenom());
+        entity.setName(dto.getNom());
+        entity.setBirth_date(dto.getDate_naissance());
+
+        repository.saveAndFlush(entity);
+        return entity.getID();
+    }
+
+    @Override
+    public EtudiantDto get(Integer id) {
+        return toDto(repository.findById(id).get());
+    }
+
+    @Override
+    public Boolean Exist(Integer id) {
+        return repository.existsById(id);
     }
 }
